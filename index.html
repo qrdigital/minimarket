@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minimarket y Abarrotes | Pedidos Online</title>
+
+    <!-- METATAGS Y MINIATURA PARA WHATSAPP / REDES SOCIALES -->
+    <meta property="og:title" content="Minimarket & Abarrotes | Catálogo de Productos">
+    <meta property="og:description" content="Haz tu pedido de abarrotes, bebidas y productos de primera necesidad al instante por WhatsApp.">
+    <meta property="og:image" content="logonegocio.jpg">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root {
+            --ink: #1b2e1b;
+            --muted: #5e6d5e;
+            --line: #e2ebe2;
+            --soft: #f4f8f4;
+            --card: #ffffff;
+            --accent: #2e7d32;
+            --accent-dark: #1b5e20;
+            --wa: #25D366;
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f7faf7;
+            color: var(--ink);
+            padding-bottom: 100px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        .hero {
+            background: #fff;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: clamp(220px, 31vw, 360px);
+            object-fit: cover;
+            cursor: zoom-in;
+            background: #eaf0ea;
+            transition: filter .25s ease;
+        }
+
+        .hero-image:hover {
+            filter: brightness(.97);
+        }
+
+        .business-info {
+            padding: 24px 0 28px;
+        }
+
+        .business-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .business-logo {
+            width: 76px;
+            height: 76px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            background: #eaf0ea;
+        }
+
+        .business-name {
+            font-size: clamp(24px, 3vw, 34px);
+            letter-spacing: -.03em;
+            line-height: 1.05;
+            font-weight: 800;
+        }
+
+        .business-description {
+            font-size: 15px;
+            color: var(--muted);
+            margin-top: 5px;
+            max-width: 620px;
+        }
+
+        .business-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 17px;
+        }
+
+        .meta-item {
+            background: #f0f7f0;
+            border: 1px solid #d4e8d4;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 12px;
+            color: #385e38;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .action-button {
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            padding: 11px 16px;
+            cursor: pointer;
+            background: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            transition: .2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent);
+        }
+
+        .action-button.whatsapp {
+            background: var(--wa);
+            color: white;
+            border-color: var(--wa);
+        }
+
+        /* =========================
+           CATEGORÍAS
+        ========================= */
+        .categories-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 12px 0;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-button {
+            white-space: nowrap;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 999px;
+            padding: 9px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--muted);
+            transition: .2s ease;
+        }
+
+        .category-button:hover {
+            border-color: var(--accent);
+            color: var(--ink);
+        }
+
+        .category-button.active {
+            background: var(--ink);
+            color: white;
+            border-color: var(--ink);
+        }
+
+        /* =========================
+           SECCIONES & DESTACADOS
+        ========================= */
+        .section {
+            padding: 36px 0 14px;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(24px, 3vw, 30px);
+            font-weight: 800;
+            letter-spacing: -.035em;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        .featured {
+            margin-top: 30px;
+            border-radius: 22px;
+            padding: 24px 26px;
+            background: var(--ink);
+            color: white;
+            box-shadow: 0 14px 35px rgba(0,0,0,.08);
+        }
+
+        .featured h2 {
+            font-size: 21px;
+            letter-spacing: -.02em;
+        }
+
+        .featured p {
+            color: #c0d8c0;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           PRODUCTOS (GRID)
+        ========================= */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: 0 2px 10px rgba(0,0,0,.025);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,.06);
+            border-color: var(--accent);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #eaf0ea;
+            cursor: zoom-in;
+            transition: transform .45s cubic-bezier(.2,.7,.2,1), filter .25s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.035);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(27, 46, 27, 0.88);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-content {
+            padding: 16px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -.015em;
+        }
+
+        .product-description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+            margin-top: 6px;
+            min-height: 38px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            gap: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            color: var(--accent-dark);
+        }
+
+        .add-button {
+            background: var(--ink);
+            color: white;
+            border: 0;
+            border-radius: 10px;
+            padding: 9px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: transform .15s ease, background .15s ease;
+        }
+
+        .add-button:hover {
+            background: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           CARRITO FLOTANTE
+        ========================= */
+        .cart-floating {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(620px, calc(100% - 32px));
+            background: var(--ink);
+            color: white;
+            border-radius: 16px;
+            padding: 13px 18px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 14px 38px rgba(0,0,0,.23);
+            cursor: pointer;
+        }
+
+        .cart-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .cart-info span {
+            font-size: 12px;
+            color: #c0d8c0;
+        }
+
+        .cart-total {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        /* =========================
+           MODALES Y FORMULARIOS
+        ========================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 20, 12, 0.65);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            width: min(680px, 100%);
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 25px 70px rgba(0,0,0,.25);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .close-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 0;
+            background: #eaf0ea;
+            cursor: pointer;
+            font-size: 19px;
+            display: grid;
+            place-items: center;
+        }
+
+        .modal-product {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .modal-product img {
+            width: 118px;
+            height: 118px;
+            border-radius: 14px;
+            object-fit: cover;
+            cursor: zoom-in;
+            background: #eaf0ea;
+        }
+
+        .option-group {
+            margin-top: 18px;
+        }
+
+        .option-title {
+            font-weight: 800;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--line);
+            padding: 11px 13px;
+            border-radius: 11px;
+            margin-bottom: 7px;
+            cursor: pointer;
+            transition: .15s ease;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: var(--soft);
+        }
+
+        .option:has(input:checked) {
+            border-color: var(--ink);
+            background: var(--soft);
+        }
+
+        .option input {
+            margin-right: 8px;
+        }
+
+        .option-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .quantity-selector button {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            background: #eaf0ea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .quantity-number {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .modal-add-button {
+            width: 100%;
+            background: var(--ink);
+            color: white;
+            border: 0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .modal-add-button:hover {
+            background: var(--accent);
+        }
+
+        /* CARRITO ITEMS */
+        .cart-item {
+            border-bottom: 1px solid var(--line);
+            padding: 15px 0;
+        }
+
+        .cart-item-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .cart-item-name {
+            font-weight: 800;
+        }
+
+        .cart-item-details {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .mini-quantity {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .mini-quantity button {
+            width: 28px;
+            height: 28px;
+            border: 0;
+            border-radius: 6px;
+            background: #eaf0ea;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            border: 0;
+            background: transparent;
+            color: #d32f2f;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .summary {
+            margin-top: 20px;
+            border-top: 1px solid var(--line);
+            padding-top: 15px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .summary-total {
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+
+        /* FORMULARIOS DE ENVÍO */
+        .form-section {
+            margin-top: 25px;
+        }
+
+        .form-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 9px;
+            padding: 11px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--ink);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .delivery-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .delivery-option {
+            border: 1px solid var(--line);
+            padding: 13px;
+            border-radius: 11px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .delivery-option input {
+            margin-right: 6px;
+        }
+
+        .whatsapp-order {
+            width: 100%;
+            background: var(--wa);
+            color: white;
+            border: 0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: opacity .2s ease;
+        }
+
+        .whatsapp-order:hover {
+            opacity: 0.92;
+        }
+
+        /* VISOR DE IMÁGENES */
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            background: rgba(0,0,0,.92);
+            cursor: zoom-out;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+            animation: lbIn .18s ease-out;
+        }
+
+        .image-lightbox img {
+            max-width: min(94vw, 1200px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 70px rgba(0,0,0,.45);
+            cursor: default;
+            user-select: none;
+        }
+
+        .image-lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.13);
+            color: #fff;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+        }
+
+        .image-lightbox-hint {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,.65);
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        @keyframes lbIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                width: calc(100% - 24px);
+            }
+
+            .hero-image {
+                height: 205px;
+            }
+
+            .business-info {
+                padding: 18px 0 20px;
+            }
+
+            .business-logo {
+                width: 64px;
+                height: 64px;
+                border-radius: 17px;
+            }
+
+            .business-top {
+                gap: 12px;
+            }
+
+            .business-name {
+                font-size: 23px;
+            }
+
+            .business-description {
+                font-size: 13px;
+            }
+
+            .business-meta {
+                margin-top: 13px;
+            }
+
+            .meta-item {
+                font-size: 11px;
+                padding: 7px 10px;
+            }
+
+            .header-actions {
+                margin-top: 13px;
+            }
+
+            .action-button {
+                flex: 1;
+                padding: 11px 10px;
+                font-size: 12px;
+            }
+
+            .categories {
+                padding: 10px 0;
+            }
+
+            .category-button {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .section {
+                padding-top: 28px;
+            }
+
+            .featured {
+                margin-top: 22px;
+                border-radius: 18px;
+                padding: 19px;
+            }
+
+            .featured h2 {
+                font-size: 18px;
+            }
+
+            .featured p {
+                font-size: 12px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 11px;
+            }
+
+            .product-img {
+                height: 180px;
+            }
+
+            .product-content {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 14px;
+            }
+
+            .product-description {
+                font-size: 11px;
+                min-height: 34px;
+            }
+
+            .product-price {
+                font-size: 15px;
+            }
+
+            .add-button {
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+
+            .product-badge {
+                top: 8px;
+                left: 8px;
+                font-size: 9px;
+                padding: 5px 7px;
+            }
+
+            .cart-floating {
+                bottom: 12px;
+                width: calc(100% - 24px);
+            }
+
+            .modal-overlay {
+                padding: 0;
+                align-items: flex-end;
+            }
+
+            .modal {
+                width: 100%;
+                max-height: 92vh;
+                border-radius: 22px 22px 0 0;
+                padding: 19px 16px calc(20px + env(safe-area-inset-bottom));
+            }
+
+            .modal-product img {
+                width: 96px;
+                height: 96px;
+            }
+
+            .delivery-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .product-img {
+                height: 150px;
+            }
+
+            .product-content {
+                padding: 10px;
+            }
+
+            .product-description {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- CABECERA -->
+<header class="hero">
+    <img class="hero-image" src="headnegocio.jpg" alt="Abarrotes y Minimarket">
+
+    <div class="container business-info">
+        <div class="business-top">
+            <img class="business-logo" src="logonegocio.jpg" alt="Logo Negocio">
+
+            <div>
+                <h1 class="business-name">Abarrotes & Bodega</h1>
+                <p class="business-description">
+                    Productos de primera necesidad, víveres y bebidas al mejor precio directo a tu hogar.
+                </p>
+            </div>
+        </div>
+
+        <div class="business-meta">
+            <div class="meta-item">🕐 Atención: Lun - Dom 08:00 - 21:00</div>
+            <div class="meta-item">📍 Delivery Cercano</div>
+            <div class="meta-item">🚚 Entregas al instante</div>
+        </div>
+
+        <div class="header-actions">
+            <button class="action-button" onclick="openLocation()">📍 Ubicación</button>
+            <button class="action-button whatsapp" onclick="contactWhatsApp()">WhatsApp</button>
+        </div>
+    </div>
+</header>
+
+<!-- CATEGORÍAS -->
+<div class="categories-wrapper">
+    <div class="container">
+        <div class="categories">
+            <button class="category-button active" onclick="filterCategory('todos', this)">Todos</button>
+            <button class="category-button" onclick="filterCategory('despensa', this)">Despensa</button>
+            <button class="category-button" onclick="filterCategory('lacteos', this)">Lácteos y Huevos</button>
+            <button class="category-button" onclick="filterCategory('bebidas', this)">Bebidas</button>
+            <button class="category-button" onclick="filterCategory('limpieza', this)">Limpieza</button>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+
+<section class="featured">
+    <h2>Catálogo de Ofertas</h2>
+    <p>Arma tu lista de compras rápida y recíbela directo en tu puerta.</p>
+</section>
+
+<!-- CATÁLOGO DE PRODUCTOS -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Productos Disponibles</h2>
+        <p class="section-description">Selecciona los productos y la cantidad que necesitas.</p>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+        <!-- PRODUCTO 1 -->
+        <article class="product-card" data-category="despensa" data-id="1" data-name="Arroz Superior 1kg" data-price="4.20">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Arroz Superior 1kg">
+                <span class="product-badge">OFERTA</span>
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Arroz Superior 1kg</h3>
+                <p class="product-description">Arroz seleccionado, grano largo y graneado.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 4.20</div>
+                    <button class="add-button" onclick="openProduct(1)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCTO 2 -->
+        <article class="product-card" data-category="despensa" data-id="2" data-name="Aceite Vegetal 1 Litro" data-price="8.50">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Aceite Vegetal 1 Litro">
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Aceite Vegetal 1L</h3>
+                <p class="product-description">Ideal para todo tipo de preparaciones de cocina.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 8.50</div>
+                    <button class="add-button" onclick="openProduct(2)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCTO 3 -->
+        <article class="product-card" data-category="lacteos" data-id="3" data-name="Leche Evaporada 390g" data-price="3.80">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Leche Evaporada">
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Leche Evaporada 390g</h3>
+                <p class="product-description">Lata de leche entera concentrada.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 3.80</div>
+                    <button class="add-button" onclick="openProduct(3)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCTO 4 -->
+        <article class="product-card" data-category="lacteos" data-id="4" data-name="Bandeja de Huevos x 15" data-price="9.50">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Bandeja de Huevos">
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Huevos Rosados x15</h3>
+                <p class="product-description">Bandeja de huevos frescos seleccionados.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 9.50</div>
+                    <button class="add-button" onclick="openProduct(4)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCTO 5 -->
+        <article class="product-card" data-category="bebidas" data-id="5" data-name="Agua Mineral 2.5 Litros" data-price="3.50">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Agua Mineral">
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Agua Mineral 2.5L</h3>
+                <p class="product-description">Agua de mesa sin gas, botella familiar.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 3.50</div>
+                    <button class="add-button" onclick="openProduct(5)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCTO 6 -->
+        <article class="product-card" data-category="limpieza" data-id="6" data-name="Detergente en Polvo 800g" data-price="7.20">
+            <div class="product-image-wrapper">
+                <img class="product-img" src="productonegocio.jpg" alt="Detergente en Polvo">
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">Detergente Polvo 800g</h3>
+                <p class="product-description">Limpieza profunda y fresco aroma para la ropa.</p>
+                <div class="product-bottom">
+                    <div class="product-price">S/ 7.20</div>
+                    <button class="add-button" onclick="openProduct(6)">+ Agregar</button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+</main>
+
+<!-- CARRITO FLOTANTE -->
+<div class="cart-floating" onclick="openCart()">
+    <div class="cart-info">
+        <strong>Mi Lista de Compras</strong>
+        <span id="cartCount">0 productos</span>
+    </div>
+    <div class="cart-total" id="floatingTotal">S/ 0.00</div>
+</div>
+
+<!-- MODAL SELECCIÓN Y FORMATO -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="modalProductName">Producto</h2>
+            <button class="close-button" onclick="closeModal('productModal')">×</button>
+        </div>
+
+        <div class="modal-product">
+            <img id="modalProductImage" src="" alt="">
+            <div>
+                <p id="modalProductDescription" style="color:var(--muted); line-height:1.5; font-size:14px;"></p>
+                <strong id="modalProductPrice" style="display:block; margin-top:10px; font-size:20px; color:var(--ink);"></strong>
+            </div>
+        </div>
+
+        <!-- FORMATO / PRESENTACIÓN -->
+        <div class="option-group">
+            <div class="option-title">Presentación / Formato</div>
+
+            <label class="option">
+                <span class="option-left">
+                    <input type="radio" name="size" value="Unidad Standard" data-extra="0" checked> Unidad Estándar
+                </span>
+                <span>Incluido</span>
+            </label>
+        </div>
+
+        <div class="quantity-selector">
+            <button type="button" onclick="changeModalQuantity(-1)">−</button>
+            <span class="quantity-number" id="modalQuantity">1</span>
+            <button type="button" onclick="changeModalQuantity(1)">+</button>
+        </div>
+
+        <button class="modal-add-button" onclick="addToCart()">Agregar a la lista</button>
+    </div>
+</div>
+
+<!-- MODAL CARRITO -->
+<div class="modal-overlay" id="cartModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Tu Pedido de Abarrotes</h2>
+            <button class="close-button" onclick="closeModal('cartModal')">×</button>
+        </div>
+
+        <div id="cartItems">
+            <p style="color:var(--muted);">Tu lista está vacía.</p>
+        </div>
+
+        <div class="summary">
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <strong id="summarySubtotal">S/ 0.00</strong>
+            </div>
+            <div class="summary-line">
+                <span>Costo de Envío</span>
+                <strong id="summaryDelivery">S/ 0.00</strong>
+            </div>
+            <div class="summary-line summary-total">
+                <span>Total Estimado</span>
+                <strong id="summaryTotal">S/ 0.00</strong>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE ENVÍO -->
+        <div class="form-section">
+            <div class="form-title">Opción de Entrega</div>
+            <div class="delivery-options">
+                <label class="delivery-option">
+                    <input type="radio" name="delivery" value="Recojo en bodega" checked onchange="updateDelivery()"> 📍 Recojo en local
+                </label>
+                <label class="delivery-option">
+                    <input type="radio" name="delivery" value="Delivery a Domicilio" onchange="updateDelivery()"> 🚚 Delivery
+                </label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-title">Datos del Cliente</div>
+            <div class="form-group">
+                <label for="customerName">Nombre completo</label>
+                <input id="customerName" type="text" placeholder="Tu nombre" autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Teléfono / Celular</label>
+                <input id="customerPhone" type="tel" placeholder="Tu número de contacto" autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label for="customerNote">Dirección / Referencia</label>
+                <textarea id="customerNote" placeholder="Dirección exacta para el delivery o detalles sobre tu pedido."></textarea>
+            </div>
+        </div>
+
+        <button class="whatsapp-order" type="button" onclick="sendOrderWhatsApp()">
+            Enviar Pedido por WhatsApp
+        </button>
+    </div>
+</div>
+
+<!-- VISOR DE IMÁGENES -->
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog">
+    <button class="image-lightbox-close" type="button" onclick="closeImageLightbox()">×</button>
+    <img id="lightboxImage" src="" alt="Vista previa">
+    <div class="image-lightbox-hint">Haz clic fuera para cerrar</div>
+</div>
+
+<script>
+let cart = [];
+let currentProduct = null;
+let modalQuantity = 1;
+const products = {};
+
+document.querySelectorAll('.product-card').forEach(card => {
+    products[card.dataset.id] = {
+        id: card.dataset.id,
+        name: card.dataset.name,
+        price: Number(card.dataset.price || 0),
+        category: card.dataset.category,
+        image: card.querySelector('.product-img')?.src || '',
+        description: card.querySelector('.product-description')?.textContent.trim() || ''
+    };
+});
+
+function openProduct(id) {
+    const p = products[String(id)];
+    if (!p) return;
+    currentProduct = p;
+    modalQuantity = 1;
+
+    const name = document.getElementById('modalProductName');
+    const image = document.getElementById('modalProductImage');
+    const desc = document.getElementById('modalProductDescription');
+    const price = document.getElementById('modalProductPrice');
+    const qty = document.getElementById('modalQuantity');
+
+    if (name) name.textContent = p.name;
+    if (image) { image.src = p.image; image.alt = p.name; }
+    if (desc) desc.textContent = p.description;
+    if (price) price.textContent = 'S/ ' + p.price.toFixed(2);
+    if (qty) qty.textContent = '1';
+
+    document.querySelectorAll('#productModal input[type=radio][name=size]').forEach((r, i) => r.checked = i === 0);
+
+    document.getElementById('productModal')?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+    document.getElementById(id)?.classList.remove('active');
+    if (!document.querySelector('.modal-overlay.active')) document.body.style.overflow = '';
+}
+
+function changeModalQuantity(delta) {
+    modalQuantity = Math.max(1, modalQuantity + delta);
+    const el = document.getElementById('modalQuantity');
+    if (el) el.textContent = modalQuantity;
+}
+
+function addToCart() {
+    if (!currentProduct) return;
+    const unit = currentProduct.price;
+
+    cart.push({
+        id: Date.now(),
+        productId: currentProduct.id,
+        name: currentProduct.name,
+        unit,
+        qty: modalQuantity
+    });
+
+    updateCartUI();
+    closeModal('productModal');
+}
+
+function updateCartUI() {
+    const count = cart.reduce((s, x) => s + x.qty, 0);
+    const total = cart.reduce((s, x) => s + x.unit * x.qty, 0);
+
+    const countEl = document.getElementById('cartCount');
+    const totalEl = document.getElementById('floatingTotal');
+
+    if (countEl) countEl.textContent = count + ' ' + (count === 1 ? 'producto' : 'productos');
+    if (totalEl) totalEl.textContent = 'S/ ' + total.toFixed(2);
+
+    renderCart();
+}
+
+function renderCart() {
+    const wrap = document.getElementById('cartItems');
+    if (!wrap) return;
+
+    if (!cart.length) {
+        wrap.innerHTML = '<p style="color:var(--muted);">Tu lista está vacía.</p>';
+        return;
+    }
+
+    wrap.innerHTML = cart.map(item => {
+        return `
+            <div class="cart-item">
+                <div class="cart-item-top">
+                    <div>
+                        <div class="cart-item-name">${escapeHTML(item.name)}</div>
+                    </div>
+                    <strong>S/ ${(item.unit * item.qty).toFixed(2)}</strong>
+                </div>
+                <div class="cart-item-actions">
+                    <div class="mini-quantity">
+                        <button type="button" onclick="changeCartQty(${item.id}, -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button type="button" onclick="changeCartQty(${item.id}, 1)">+</button>
+                    </div>
+                    <button class="remove-item" type="button" onclick="removeCartItem(${item.id})">Eliminar</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const subtotal = cart.reduce((s, x) => s + x.unit * x.qty, 0);
+    const sub = document.getElementById('summarySubtotal');
+    const total = document.getElementById('summaryTotal');
+
+    if (sub) sub.textContent = 'S/ ' + subtotal.toFixed(2);
+    if (total) total.textContent = 'S/ ' + subtotal.toFixed(2);
+}
+
+function changeCartQty(id, delta) {
+    const item = cart.find(x => x.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+    updateCartUI();
+}
+
+function removeCartItem(id) {
+    cart = cart.filter(x => x.id !== id);
+    updateCartUI();
+}
+
+function openCart() {
+    updateCartUI();
+    document.getElementById('cartModal')?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function escapeHTML(str) {
+    return String(str).replace(/[&<>'"]/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[c]));
+}
+
+function filterCategory(category, button) {
+    document.querySelectorAll('.category-button').forEach(b => b.classList.remove('active'));
+    button?.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.display = (category === 'todos' || card.dataset.category === category) ? '' : 'none';
+    });
+}
+
+function openLocation() {
+    window.open('https://www.google.com/maps/search/?api=1&query=Lima+Peru', '_blank', 'noopener');
+}
+
+function contactWhatsApp() {
+    window.open('https://wa.me/51920832884?text=Hola%2C%20deseo%20consultar%20sobre%20sus%20productos.', '_blank', 'noopener');
+}
+
+function sendOrderWhatsApp() {
+    if (!cart.length) {
+        alert('Agrega al menos un producto a tu lista.');
+        return;
+    }
+    const name = document.getElementById('customerName')?.value.trim() || '';
+    const phone = document.getElementById('customerPhone')?.value.trim() || '';
+    const note = document.getElementById('customerNote')?.value.trim() || '';
+    const delivery = document.querySelector('input[name="delivery"]:checked')?.value || 'Recojo en bodega';
+
+    const lines = cart.map(x => {
+        return `• ${x.qty}x ${x.name} — S/ ${(x.unit * x.qty).toFixed(2)}`;
+    });
+
+    const subtotal = cart.reduce((s, x) => s + x.unit * x.qty, 0);
+    const deliveryCost = delivery === 'Delivery a Domicilio' ? 5 : 0; // Costo de envío configurable
+    const total = subtotal + deliveryCost;
+
+    const text = [
+        '🛒 *NUEVO PEDIDO DE ABARROTES*',
+        '',
+        lines.join('\n'),
+        '',
+        '*Subtotal:* S/ ' + subtotal.toFixed(2),
+        deliveryCost > 0 ? '*Envío:* S/ ' + deliveryCost.toFixed(2) : '',
+        '*Total:* S/ ' + total.toFixed(2),
+        '*Entrega:* ' + delivery,
+        name ? '*Nombre:* ' + name : '',
+        phone ? '*Teléfono:* ' + phone : '',
+        note ? '*Dirección/Referencia:* ' + note : ''
+    ].filter(Boolean).join('\n');
+
+    window.open('https://wa.me/51920832884?text=' + encodeURIComponent(text), '_blank', 'noopener');
+}
+
+function updateDelivery() {
+    const selected = document.querySelector('input[name="delivery"]:checked')?.value;
+    const deliveryCost = selected === 'Delivery a Domicilio' ? 5 : 0;
+    const el = document.getElementById('summaryDelivery');
+    if (el) el.textContent = 'S/ ' + deliveryCost.toFixed(2);
+    
+    const subtotal = cart.reduce((s, x) => s + x.unit * x.qty, 0);
+    const totalEl = document.getElementById('summaryTotal');
+    if (totalEl) totalEl.textContent = 'S/ ' + (subtotal + deliveryCost).toFixed(2);
+}
+
+/* Lightbox */
+function openImageLightbox(src, alt) {
+    const box = document.getElementById('imageLightbox');
+    const img = document.getElementById('lightboxImage');
+    if (!box || !img) return;
+    img.src = src;
+    img.alt = alt || 'Imagen de producto';
+    box.classList.add('active');
+    box.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+}
+
+function closeImageLightbox() {
+    const box = document.getElementById('imageLightbox');
+    const img = document.getElementById('lightboxImage');
+    if (!box) return;
+    box.classList.remove('active');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    if (img) img.src = '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.product-img, .hero-image').forEach(img => {
+        img.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            openImageLightbox(img.currentSrc || img.src, img.alt);
+        });
+    });
+
+    const modalImg = document.getElementById('modalProductImage');
+    if (modalImg) {
+        modalImg.addEventListener('click', () => {
+            if (modalImg.src) openImageLightbox(modalImg.currentSrc || modalImg.src, modalImg.alt);
+        });
+    }
+
+    const box = document.getElementById('imageLightbox');
+    if (box) {
+        box.addEventListener('click', e => {
+            if (e.target === box) closeImageLightbox();
+        });
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            closeImageLightbox();
+            closeModal('productModal');
+            closeModal('cartModal');
+        }
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeModal(modal.id);
+        });
+    });
+});
+</script>
+</body>
+</html>
